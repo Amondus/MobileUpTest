@@ -46,10 +46,16 @@ final class MessagesViewController: UIViewController {
     registerCells()
   }
   
-  private func fetchMessages() {
+  private func obtainMessagesRequestParameters() -> Resource<[MessageResponse]>? {
     let stringUrl = "https://s3-eu-west-1.amazonaws.com/builds.getmobileup.com/storage/MobileUp-Test/api.json"
-    guard let url = URL(string: stringUrl) else { return }
+    guard let url = URL(string: stringUrl) else { return nil}
     let resource = Resource<[MessageResponse]>(url: url, httpMethod: .get)
+    
+    return resource
+  }
+  
+  private func fetchMessages() {
+    guard let parameters = obtainMessagesRequestParameters() else { return }
     
     guard Reachability.isConnectedToNetwork() else {
       reloadTableView()
@@ -57,7 +63,7 @@ final class MessagesViewController: UIViewController {
       return
     }
     
-    URLRequest.load(resource: resource)
+    URLRequest.load(resource: parameters)
       .subscribe (onNext: { result in
         self.messages = result
         self.reloadTableView()
