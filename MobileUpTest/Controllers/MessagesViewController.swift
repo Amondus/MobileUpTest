@@ -15,6 +15,8 @@ final class MessagesViewController: UIViewController {
   @IBOutlet weak var errorLabel: UILabel!
   @IBOutlet weak var activityIndicationView: UIActivityIndicatorView!
   
+  private var refreshControl = UIRefreshControl()
+  
   private let disposeBag = DisposeBag()
   
   private var messages: [MessageResponse] = []
@@ -24,6 +26,9 @@ final class MessagesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationController?.navigationBar.prefersLargeTitles = true
+    
+    refreshControl.addTarget(self, action: #selector(self.refreshMessages), for: .valueChanged)
+    tableView.addSubview(refreshControl)
     
     setupTableView()
     fetchMessages()
@@ -42,6 +47,8 @@ final class MessagesViewController: UIViewController {
     tableView.delegate = self
     tableView.layer.isHidden = true
     errorLabel.layer.isHidden = true
+    
+    tableView.tableFooterView = UIView()
     
     registerCells()
   }
@@ -74,6 +81,7 @@ final class MessagesViewController: UIViewController {
   
   private func configureErrorView() {
     DispatchQueue.main.async { [weak self] in
+      self?.refreshControl.endRefreshing()
       self?.activityIndicationView.layer.isHidden = true
       self?.errorLabel.layer.isHidden = false
     }
@@ -95,12 +103,17 @@ final class MessagesViewController: UIViewController {
   
   private func reloadTableView() {
     DispatchQueue.main.async { [weak self] in
+      self?.refreshControl.endRefreshing()
       self?.activityIndicationView.layer.isHidden = true
       self?.tableView.layer.isHidden = self?.messages.isEmpty ?? true
       self?.errorLabel.layer.isHidden = !(self?.messages.isEmpty ?? true)
       
       self?.tableView.reloadData()
     }
+  }
+  
+  @objc private func refreshMessages(_ sender: AnyObject) {
+    fetchMessages()
   }
   
   // MARK: - Configure Cells
