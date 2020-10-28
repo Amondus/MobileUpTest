@@ -35,8 +35,29 @@ final class MessageTableViewCell: UITableViewCell {
     
     personNameLabel.text = name
     messageTextLabel.text = messageText
-    dateLabel.text = dateString
+    dateLabel.text = getFormattedDate(from: dateString)
     
     personImageView.kf.setImage(with: imageUrl)
+  }
+  
+  private func getFormattedDate(from dateString: String?) -> String? {
+    let dateFormatterGet = DateFormatter()
+    dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+
+    let dateFormatterPrint = DateFormatter()
+    dateFormatterPrint.dateFormat = "dd MMMM yyyy"
+
+    let date = dateFormatterGet.date(from: dateString ?? "") ?? Date()
+    
+    if Calendar.current.isDateInYesterday(date) {
+      return "Yesterday"
+    }
+    
+    if Calendar.current.isDateInToday(date) {
+      dateFormatterPrint.dateFormat = "HH:mm"
+      return dateFormatterPrint.string(from: date)
+    }
+    
+    return dateFormatterPrint.string(from: date)
   }
 }
