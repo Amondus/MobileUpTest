@@ -12,19 +12,38 @@ import RxCocoa
 final class MessagesViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var errorLabel: UILabel!
+  @IBOutlet weak var activityIndicationView: UIActivityIndicatorView!
   
-  var messages: [MessageResponse] = []
+  private let disposeBag = DisposeBag()
   
-  let disposeBag = DisposeBag()
+  private var messages: [MessageResponse] = []
+  
+  // MARK: - Life Cycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationController?.navigationBar.prefersLargeTitles = true
+    
+    setupTableView()
+    fetchMessages()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    activityIndicationView.isHidden = false
+    activityIndicationView.startAnimating()
+  }
+  
+  // MARK: - Private Methods
+  
+  private func setupTableView() {
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.layer.isHidden = true
+    errorLabel.layer.isHidden = true
     
     registerCells()
-    fetchMessages()
   }
   
   private func fetchMessages() {
@@ -36,11 +55,24 @@ final class MessagesViewController: UIViewController {
       .subscribe (onNext: { result in
         self.messages = result
         self.reloadTableView()
+      }, onError: { _ in
+        self.configureErrorView()
       }).disposed(by: disposeBag)
+  }
+  
+  private func configureErrorView() {
+    DispatchQueue.main.async { [weak self] in
+      self?.activityIndicationView.layer.isHidden = true
+      self?.errorLabel.layer.isHidden = false
+    }
   }
   
   private func reloadTableView() {
     DispatchQueue.main.async { [weak self] in
+      self?.activityIndicationView.layer.isHidden = true
+      self?.tableView.layer.isHidden = self?.messages.isEmpty ?? true
+      self?.errorLabel.layer.isHidden = !(self?.messages.isEmpty ?? true)
+      
       self?.tableView.reloadData()
     }
   }
@@ -92,5 +124,9 @@ extension MessagesViewController: UITableViewDataSource {
 extension MessagesViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 76
   }
 }

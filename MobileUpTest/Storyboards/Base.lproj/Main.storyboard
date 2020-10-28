@@ -16,23 +16,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ0-1g-hFT">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AAd-U2-O8r">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nothing found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGH-JU-Scg">
+                                <rect key="frame" x="20" y="411" width="374" height="74"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="hCS-fE-6pV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="15w-Md-Kj9">
+                                <rect key="frame" x="157" y="398" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="6NN-nM-IIY"/>
+                                    <constraint firstAttribute="width" constant="100" id="eoo-gQ-9iF"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZQ0-1g-hFT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7Ji-Mk-c9x"/>
-                            <constraint firstAttribute="bottom" secondItem="ZQ0-1g-hFT" secondAttribute="bottom" id="EPG-UQ-UmJ"/>
-                            <constraint firstItem="ZQ0-1g-hFT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bMO-Od-cNu"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZQ0-1g-hFT" secondAttribute="trailing" id="z6q-JM-es3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AAd-U2-O8r" secondAttribute="trailing" id="12b-W2-DiX"/>
+                            <constraint firstItem="jGH-JU-Scg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="17X-Jk-7uM"/>
+                            <constraint firstItem="AAd-U2-O8r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Ed-Ak-niG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jGH-JU-Scg" secondAttribute="trailing" constant="20" id="5a5-f4-Y4N"/>
+                            <constraint firstItem="15w-Md-Kj9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Mcr-0s-a3O"/>
+                            <constraint firstItem="jGH-JU-Scg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NjV-cE-Kp6"/>
+                            <constraint firstAttribute="bottom" secondItem="AAd-U2-O8r" secondAttribute="bottom" id="ZAu-aK-jni"/>
+                            <constraint firstItem="15w-Md-Kj9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wVp-uJ-Ndr"/>
+                            <constraint firstItem="AAd-U2-O8r" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xtN-35-Jjg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Messages" id="rM3-xJ-kTR"/>
                     <connections>
-                        <outlet property="tableView" destination="ZQ0-1g-hFT" id="BYW-Zq-5mV"/>
+                        <outlet property="activityIndicationView" destination="15w-Md-Kj9" id="EpU-AA-pOR"/>
+                        <outlet property="errorLabel" destination="jGH-JU-Scg" id="Taa-FF-I9s"/>
+                        <outlet property="tableView" destination="AAd-U2-O8r" id="FwY-g0-6j1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
