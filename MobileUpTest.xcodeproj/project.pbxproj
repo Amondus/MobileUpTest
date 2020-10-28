@@ -20,6 +20,7 @@
 		7F3FA586254949E6005ADFA7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7F3FA585254949E6005ADFA7 /* RxSwift */; };
 		7F3FA588254949E6005ADFA7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7F3FA587254949E6005ADFA7 /* RxCocoa */; };
 		7F3FA58C25494AAC005ADFA7 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA58B25494AAC005ADFA7 /* MessageResponse.swift */; };
+		7F3FA59125495F4D005ADFA7 /* InternetReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA59025495F4D005ADFA7 /* InternetReachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		7F3FA57425484C38005ADFA7 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		7F3FA5812549491E005ADFA7 /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		7F3FA58B25494AAC005ADFA7 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
+		7F3FA59025495F4D005ADFA7 /* InternetReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetReachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				7F3FA5812549491E005ADFA7 /* URLRequest+Extensions.swift */,
+				7F3FA59025495F4D005ADFA7 /* InternetReachability.swift */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				7F3FA57525484C38005ADFA7 /* MessageTableViewCell.swift in Sources */,
 				7F3FA55D25484BCB005ADFA7 /* AppDelegate.swift in Sources */,
 				7F3FA5822549491E005ADFA7 /* URLRequest+Extensions.swift in Sources */,
+				7F3FA59125495F4D005ADFA7 /* InternetReachability.swift in Sources */,
 				7F3FA58C25494AAC005ADFA7 /* MessageResponse.swift in Sources */,
 				7F3FA55F25484BCB005ADFA7 /* SceneDelegate.swift in Sources */,
 			);

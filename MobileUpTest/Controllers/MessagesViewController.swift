@@ -51,11 +51,17 @@ final class MessagesViewController: UIViewController {
     guard let url = URL(string: stringUrl) else { return }
     let resource = Resource<[MessageResponse]>(url: url, httpMethod: .get)
     
+    guard Reachability.isConnectedToNetwork() else {
+      reloadTableView()
+      showNoInternetAlert()
+      return
+    }
+    
     URLRequest.load(resource: resource)
       .subscribe (onNext: { result in
         self.messages = result
         self.reloadTableView()
-      }, onError: { _ in
+      }, onError: { error in
         self.configureErrorView()
       }).disposed(by: disposeBag)
   }
@@ -65,6 +71,20 @@ final class MessagesViewController: UIViewController {
       self?.activityIndicationView.layer.isHidden = true
       self?.errorLabel.layer.isHidden = false
     }
+  }
+  
+  private func showNoInternetAlert() {
+    let alert = UIAlertController(
+      title: "No internet connection",
+      message: nil,
+      preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(
+                      title: "Close",
+                      style: .default,
+                      handler: nil))
+    
+    self.present(alert, animated: true, completion: nil)
   }
   
   private func reloadTableView() {
