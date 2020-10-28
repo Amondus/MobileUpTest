@@ -11,7 +11,7 @@ final class MessagesViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
   
-  let messages: [String] = []
+  let messages: [MessageResponse] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,11 +40,13 @@ final class MessagesViewController: UIViewController {
       
     }
     
+    let message = messages[indexPath.row]
+    
     cell.configure(
-      name: <#String?#>,
-      messageText: <#String?#>,
-      dateString: <#String?#>,
-      imageUrlString: <#String?#>)
+      name: message.user?.nickname,
+      messageText: message.message?.text,
+      dateString: message.message?.receiving_date,
+      imageUrlString: message.user?.avatar_url)
     
     return cell
   }
