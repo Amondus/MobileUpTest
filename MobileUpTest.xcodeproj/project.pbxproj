@@ -17,6 +17,8 @@
 		7F3FA57625484C38005ADFA7 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FA57425484C38005ADFA7 /* MessageTableViewCell.xib */; };
 		7F3FA57A25484FB7005ADFA7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7F3FA57925484FB7005ADFA7 /* Kingfisher */; };
 		7F3FA5822549491E005ADFA7 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA5812549491E005ADFA7 /* URLRequest+Extensions.swift */; };
+		7F3FA586254949E6005ADFA7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7F3FA585254949E6005ADFA7 /* RxSwift */; };
+		7F3FA588254949E6005ADFA7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7F3FA587254949E6005ADFA7 /* RxCocoa */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F3FA588254949E6005ADFA7 /* RxCocoa in Frameworks */,
+				7F3FA586254949E6005ADFA7 /* RxSwift in Frameworks */,
 				7F3FA57A25484FB7005ADFA7 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +71,7 @@
 				7F3FA55C25484BCB005ADFA7 /* AppDelegate.swift */,
 				7F3FA55E25484BCB005ADFA7 /* SceneDelegate.swift */,
 				7F3FA57E2549472B005ADFA7 /* NetworkLayer */,
+				7F3FA58A25494A57005ADFA7 /* ResponseObjects */,
 				7F3FA57125484C13005ADFA7 /* UILayer */,
 				7F3FA57D25494712005ADFA7 /* Controllers */,
 				7F3FA57C25494703005ADFA7 /* Storyboards */,
@@ -118,6 +123,13 @@
 			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
+		7F3FA58A25494A57005ADFA7 /* ResponseObjects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ResponseObjects;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,6 +148,8 @@
 			name = MobileUpTest;
 			packageProductDependencies = (
 				7F3FA57925484FB7005ADFA7 /* Kingfisher */,
+				7F3FA585254949E6005ADFA7 /* RxSwift */,
+				7F3FA587254949E6005ADFA7 /* RxCocoa */,
 			);
 			productName = MobileUpTest;
 			productReference = 7F3FA55925484BCB005ADFA7 /* MobileUpTest.app */;
@@ -166,6 +180,7 @@
 			mainGroup = 7F3FA55025484BCB005ADFA7;
 			packageReferences = (
 				7F3FA57825484FB7005ADFA7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				7F3FA584254949E6005ADFA7 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 7F3FA55A25484BCB005ADFA7 /* Products */;
 			projectDirPath = "";
@@ -411,6 +426,14 @@
 				minimumVersion = 5.15.6;
 			};
 		};
+		7F3FA584254949E6005ADFA7 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -418,6 +441,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7F3FA57825484FB7005ADFA7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		7F3FA585254949E6005ADFA7 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F3FA584254949E6005ADFA7 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		7F3FA587254949E6005ADFA7 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F3FA584254949E6005ADFA7 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
