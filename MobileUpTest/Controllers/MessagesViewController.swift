@@ -21,6 +21,7 @@ final class MessagesViewController: UIViewController {
     super.viewDidLoad()
     navigationController?.navigationBar.prefersLargeTitles = true
     tableView.dataSource = self
+    tableView.delegate = self
     
     registerCells()
     fetchMessages()
@@ -83,5 +84,13 @@ extension MessagesViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     return createMessageCell(indexPath: indexPath)
+  }
+}
+
+// MARK: - UITableViewDelegate Methods
+
+extension MessagesViewController: UITableViewDelegate {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 }
